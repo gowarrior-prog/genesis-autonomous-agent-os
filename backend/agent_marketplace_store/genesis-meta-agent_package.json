@@ -1,0 +1,11 @@
+{
+    "agent_id": "genesis-meta-agent",
+    "export_hash": "ipfs://QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mX1726",
+    "signed_by": "dev_signature_ed25519_root",
+    "capabilities": [
+        "Graph Query Optimization",
+        "Context Pollution Self-Healing"
+    ],
+    "trust_score": 98,
+    "runtime_environment": "LangGraph Core v2"
+}

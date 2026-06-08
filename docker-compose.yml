@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # Intelligent Micro-Kernel Engine Node (FastAPI)
+  backend:
+    build: ./backend
+    container_name: genesis-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - qdrant
+      - neo4j
+      - redis
+
+  # Vector Memory Space
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: genesis-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  # Knowledge Graph Engine
+  neo4j:
+    image: neo4j:5.12.0-community
+    container_name: genesis-neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/genesis_password
+    volumes:
+      - neo4j_data:/data
+
+  # Caching Layer
+  redis:
+    image: redis:7-alpine
+    container_name: genesis-redis
+    ports:
+      - "6339:6379" # Remapped to prevent windows local port jams
+    command: redis-server --appendonly yes
+
+volumes:
+  qdrant_data:
+  neo4j_data:

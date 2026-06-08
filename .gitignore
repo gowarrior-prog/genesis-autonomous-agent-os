@@ -1,0 +1,22 @@
+# Next.js Build Assets Cache Storage Arrays
+.next/
+out/
+build/
+node_modules/
+.pnp
+.pnp.js
+
+# Python Environments Local Virtual Binary Pools
+backend/venv/
+backend/.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.env
+
+# Local Isolated Workspaces Scaffolder Assets
+sandbox_workspace/
+.DS_Store
+Thumbs.db
